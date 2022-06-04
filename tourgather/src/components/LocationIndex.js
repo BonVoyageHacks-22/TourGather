@@ -5,7 +5,7 @@ function LocationIndex(props) {
 
     return (
         <>
-        <p>This is where we put the location index</p>
+        <p>This the index page content for the locations</p>
 
         </>
     );
