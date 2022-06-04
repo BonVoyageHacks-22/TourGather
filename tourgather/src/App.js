@@ -1,7 +1,12 @@
 import './App.css';
-import { Routes, Route, Link } from "react-router-dom";
+import {Router, Routes, Route, Link, BrowserRouter} from "react-router-dom";
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
-import './App.css';
+import Signup from "./Signup";
+import { Container } from "react-bootstrap";
+import { AuthProvider } from "./AuthContext";
+import Dashboard from "./Dashboard"
+import { BrowserRouter as Switch } from "react-router-dom"
+import Login from "./Login"
 
 function App() {
   return (
@@ -10,6 +15,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
+        <Route path="signup" element={<Signingup />} />
+        <Route path="dashboard" element={<Dashboard/>} />
+        <Route path="login" element={<Loginin/>} />
       </Routes>
     </div>
   );
@@ -30,6 +38,9 @@ function Home() {
           <li>
           <Link to="/">Home</Link>
           </li>
+          <li>
+              <Link to="/signup">Sign Up</Link>
+          </li>
       </nav>
     </>
   );
@@ -46,6 +57,62 @@ function About() {
       </main>
     </>
   );
+}
+
+function Signingup() {
+    return (
+        <>
+            <main>
+                <AuthProvider>
+                    <Container
+                        className="d-flex align-content-center"
+                        style={{ minHeight: "100vh" }}
+                    >
+                        <div
+                            className="w-100" style={{ minWidth: "400px" }}
+                        >
+                            <Signup />
+
+                        </div>
+
+                    </Container>
+                </AuthProvider>
+
+
+                <p className='about-para'>
+                    <Link to="/"> Home </Link>
+                </p>
+            </main>
+        </>
+    );
+}
+
+function Loginin() {
+    return (
+        <>
+            <main>
+                <AuthProvider>
+                    <Container
+                        className="d-flex align-content-center"
+                        style={{ minHeight: "100vh" }}
+                    >
+                        <div
+                            className="w-100" style={{ minWidth: "400px" }}
+                        >
+                            <Login />
+
+                        </div>
+
+                    </Container>
+                </AuthProvider>
+
+
+                <p className='about-para'>
+                    <Link to="/"> Home </Link>
+                </p>
+            </main>
+        </>
+    );
 }
 
 
