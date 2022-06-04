@@ -2,6 +2,8 @@ import './App.css';
 import { Routes, Route, Link } from "react-router-dom";
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import './App.css';
+import { Profile } from './screens/profile';
+import { Guides } from './screens/guides';
 
 function App() {
   return (
@@ -10,6 +12,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
+        <Route path="profile/:id" element={<Profile />} />
+        <Route path="guides" element={<Guides/>} />
       </Routes>
     </div>
   );
@@ -29,6 +33,9 @@ function Home() {
           </li>
           <li>
           <Link to="/">Home</Link>
+          </li>
+          <li>
+          <Link to="/guides">Guides</Link>
           </li>
       </nav>
     </>
