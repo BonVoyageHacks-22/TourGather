@@ -26,7 +26,7 @@ export const Guides = () => {
             />
             <br />
             {guides.map((guide) => (
-                <>
+                <div key={guide.id}>
                     <div id="container" onClick={() => navigate(`../profile/${guide.id}`)}>
                         <img
                             id="profilePic"
@@ -47,7 +47,7 @@ export const Guides = () => {
                         </div>
                     </div>
                     <br />
-                </>
+                </div>
             ))}
         </>
     );
