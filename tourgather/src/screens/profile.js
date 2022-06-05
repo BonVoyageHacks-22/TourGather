@@ -20,7 +20,7 @@ export const Profile = () => {
             >
                 Back
             </Button>
-            <Card sx={{ backgroundColor: "#faf8e9" }} id="bigContainer">
+            <Card id="bigContainer">
                 {user !== undefined ? (
                     <>
                         <img

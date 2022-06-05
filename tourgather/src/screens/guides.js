@@ -1,17 +1,16 @@
-import { Rating, InputAdornment, TextField } from "@mui/material";
+import { useState } from "react";
+import { Rating, InputAdornment, TextField, Card } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
 import guides from "../guides.json";
 import "./guides.css";
-import { useState } from "react";
 
 export const Guides = () => {
     const navigate = useNavigate();
     const [tourGuides, setTourGuides] = useState(guides);
     const icon =
         "https://icons-for-free.com/download-icon-human+person+user+icon-1320196276306824343_512.png";
-    let searchResults = [];
 
     function search(e) {
         let input = e.target.value;
@@ -47,7 +46,7 @@ export const Guides = () => {
             <br />
             {tourGuides.map((guide) => (
                 <div key={guide.id}>
-                    <div
+                    <Card
                         id="container"
                         onClick={() => navigate(`../profile/${guide.id}`)}
                     >
@@ -68,7 +67,7 @@ export const Guides = () => {
                             </p>
                             <p>Bio: {guide.bio}</p>
                         </div>
-                    </div>
+                    </Card>
                     <br />
                 </div>
             ))}
