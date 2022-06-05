@@ -51,3 +51,8 @@
 #submitBtn:hover {
     box-shadow: 5px 10px #48a58c;
 }
+
+#bigContainer {
+    padding-top: 100px;
+    flex-direction: row;
+}

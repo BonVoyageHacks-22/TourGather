@@ -58,7 +58,7 @@ export const Profile = () => {
     }
 
     return (
-        <div style={{ marginTop: "10px" }}>
+        <div id="bigContainer" style={{ marginTop: "10px" }}>
             <Button
                 id="backBtn"
                 startIcon={<ChevronLeft />}
