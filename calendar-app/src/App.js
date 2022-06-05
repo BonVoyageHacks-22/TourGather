@@ -1,6 +1,7 @@
 import format from "date-fns/format";
 import getDay from "date-fns/getDay";
 import parse from "date-fns/parse";
+import enUS from 'date-fns/locale/en-US'
 import startOfWeek from "date-fns/startOfWeek";
 import React, { useState } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
@@ -10,7 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./App.css";
 
 const locales = {
-  "en-US": require("date-fns/locale/en-US"),
+  "en-US": enUS,
 };
 
 const localizer = dateFnsLocalizer({
@@ -24,20 +25,19 @@ const localizer = dateFnsLocalizer({
 // dummy data
 const events = [
   {
-      title: "Big Meeting",
-      allDay: true,
-      start: new Date(2021, 6, 0),
-      end: new Date(2021, 6, 0),
+      title: "Mike Gowsling",
+      start: new Date(2022, 5, 1),
+      end: new Date(2022, 5, 1),
   },
   {
-      title: "Vacation",
-      start: new Date(2021, 6, 7),
-      end: new Date(2021, 6, 10),
+      title: "Betty Tan",
+      start: new Date(2022, 5, 7),
+      end: new Date(2022, 5, 7),
   },
   {
-      title: "Conference",
-      start: new Date(2021, 6, 20),
-      end: new Date(2021, 6, 23),
+      title: "Peter Lim",
+      start: new Date(2022, 5, 20),
+      end: new Date(2022, 5, 20),
   },
 ];
 
@@ -45,21 +45,33 @@ function App() {
   const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
   const [allEvents, setAllEvents] = useState(events);
 
-  function handleAddEvent() {
+  function addEvent() {
     setAllEvents([...allEvents, newEvent]);
   }
 
   return (
     <div className="App">
-      <h1>Calendar</h1>
-            <h2>Add New Event</h2>
+      <h1 style={{ fontSize: "50px", marginTop: "10px", marginBottom: "10px", color: "darkblue" }}>Calendar</h1>
+            <h2 style={{ fontSize: "25px", marginTop: "10px", marginBottom: "10px", color: "darkblue" }}>Add New Tour</h2>
             <div>
-                <input type="text" placeholder="Add Tour Guide Name" style={{ width: "20%", marginRight: "10px" }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
-                <DatePicker placeholderText="Start Date" style={{ marginRight: "10px" }} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
-                <DatePicker placeholderText="End Date" selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
-                <button stlye={{ marginTop: "10px" }} onClick={handleAddEvent}>Add Tour</button>
+                <input type="text" placeholder="Add Tour Guide Name" style={{ height: "20px", width: "20%", marginRight: "10px", marginLeft: "10px" }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}></input>
+
+                <DatePicker 
+                  placeholderText="Start Date" 
+                  style={{ height: "20px", width: "20%", marginRight: "10px", marginLeft: "10px" }} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })}></DatePicker>
+                <DatePicker 
+                  placeholderText="End Date" 
+                  style={{ height: "20px", width: "20%", marginRight: "10px", marginLeft: "10px" }} selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })}></DatePicker>
+                
+                <button onClick={addEvent} style={{ left: "20px", top: "20%", marginTop: "10px" }}>Add Tour</button>
             </div>
-            <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" style={{ height: 500, margin: "50px" }} />
+
+            <Calendar 
+              localizer={localizer} 
+              events={allEvents} 
+              startAccessor="start" 
+              endAccessor="end" 
+              style={{ alignContent: "center", height: 500, width: "97%", marginBlockStart: "30px", marginBlockEnd: "30px", marginInlineStart: "30px", marginInlineEnd: "30px", color: "darkblue", backgroundColor: "white"}} />
     </div>
   );
 }
