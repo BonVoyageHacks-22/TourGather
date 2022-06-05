@@ -164,6 +164,7 @@ function NewLocationForm(props) {
         _long: files.coordinates._long,
       },
       images: [],
+      guides: [],
     });
     console.log(docRef);
 

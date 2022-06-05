@@ -22,7 +22,7 @@ function LocationView(props) {
         images: [],
     })
 
-    const fetchBlogs=async()=>{
+    const fetchLocation=async()=>{
         console.log(locationId)
 
         const docRef = doc(db, "TourGatherLOCATIONS", locationId);
@@ -38,7 +38,7 @@ function LocationView(props) {
     }
 
     useEffect(() => {
-        fetchBlogs();
+        fetchLocation();
     }, []) 
 
     return (
