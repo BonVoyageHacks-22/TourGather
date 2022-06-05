@@ -1,10 +1,13 @@
 import { Paper, Button } from '@mui/material';
 import { ChevronLeft } from '@mui/icons-material';
 
+import logo from './tour.png';
+
 export function About() {
     return (
       <>
         <main>
+          <Paper id="paper" elevation={3}>
           <Button
             id="backBtn"
             startIcon={<ChevronLeft />}
@@ -13,9 +16,8 @@ export function About() {
           >
             Back
           </Button>
-          <Paper id="paper" elevation={3}>
             <h2>About TourGather</h2>
-            <img width="500" src="tour.png" alt="TourGather"></img>
+            <img width="500" src={logo} alt="TourGather"></img>
             <br/>
             <p>TourGather is an app to connect you with local tour guides! With this website, travellers can check the different locations they want to visit and connect with the local guides familiar with those locations!</p> 
             <br/>
