@@ -49,8 +49,9 @@ export const Guides = () => {
     }
 
     return (
-        <>
-            <TextField
+        <div id="bigContainer">
+            <div>
+                <TextField
                 id="searchbar"
                 label="Search"
                 InputProps={{
@@ -67,6 +68,8 @@ export const Guides = () => {
                 }}
                 //onInput={search}
             />
+            </div>
+            
             <br />
             {tourGuides.length >= 1
                 ? tourGuides.map((guide) => (
@@ -102,6 +105,6 @@ export const Guides = () => {
                       </div>
                   ))
                 : null}
-        </>
+        </div>
     );
 };

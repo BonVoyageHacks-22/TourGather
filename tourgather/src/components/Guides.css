@@ -26,3 +26,8 @@
 p {
     justify-content: baseline;
 }
+
+#bigContainer {
+    padding-top: 100px;
+    flex-direction: column;
+}
