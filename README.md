@@ -9,9 +9,9 @@
     * `npm install firebase`
 * Big Calendar
     * `npm install react-big-calendar`
-* Big Calendar
+* Datepicker
     * `npm install react-datepicker`
-* Big Calendar
+* Date fns
     * `npm install date-fns`
 
 ## References
