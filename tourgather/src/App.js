@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route, Link } from "react-router-dom";
+import {Router, Routes, Route, Link, BrowserRouter} from "react-router-dom";
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
 
 import LocationView from './components/LocationView';
@@ -10,6 +10,14 @@ import LocationIndex from './components/LocationIndex';
 import NavigationBar from './components/NavigationBar';
 
 
+import Signup from "./Signup";
+import { Container } from "react-bootstrap";
+import { AuthProvider } from "./AuthContext";
+import Dashboard from "./Dashboard"
+import { BrowserRouter as Switch } from "react-router-dom"
+import Login from "./Login"
+import UpdateProfile from "./UpdateProfile";
+// import PrivateRoute from "./PrivateRoute";
 
 function App() {
   return (
@@ -25,6 +33,10 @@ function App() {
           <Route path="new" element={<NewLocationForm />} />
           <Route index element={<LocationIndex />} />
         </Route>
+        <Route path="signup" element={<Signingup />} />
+        <Route path="login" element={<Loginin/>} />
+        <Route path="dashboard" element={<Dashboard/>} />
+        <Route path="update-profile" element={<UpdateProfile/>} />
       </Routes>
     </div>
   );
@@ -37,6 +49,17 @@ function Home() {
         <h2>Home</h2>
         <p>You can do this, I believe in you.</p>
       </main>
+      <nav>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+          <Link to="/">Home</Link>
+          </li>
+          <li>
+              <Link to="/signup">Sign Up</Link>
+          </li>
+      </nav>
     </>
   );
 }
@@ -52,6 +75,62 @@ function About() {
       </main>
     </>
   );
+}
+
+function Signingup() {
+    return (
+        <>
+            <main>
+                <AuthProvider>
+                    <Container
+                        className="d-flex align-content-center"
+                        style={{ minHeight: "100vh" }}
+                    >
+                        <div
+                            className="w-100" style={{ minWidth: "400px" }}
+                        >
+                            <Signup />
+
+                        </div>
+
+                    </Container>
+                </AuthProvider>
+
+
+                <p className='about-para'>
+                    <Link to="/"> Home </Link>
+                </p>
+            </main>
+        </>
+    );
+}
+
+function Loginin() {
+    return (
+        <>
+            <main>
+                <AuthProvider>
+                    <Container
+                        className="d-flex align-content-center"
+                        style={{ minHeight: "100vh" }}
+                    >
+                        <div
+                            className="w-100" style={{ minWidth: "400px" }}
+                        >
+                            <Login />
+
+                        </div>
+
+                    </Container>
+                </AuthProvider>
+
+
+                <p className='about-para'>
+                    <Link to="/"> Home </Link>
+                </p>
+            </main>
+        </>
+    );
 }
 
 
