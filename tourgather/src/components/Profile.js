@@ -1,10 +1,12 @@
 import { Card, Button, Rating } from "@mui/material";
 import { ChevronLeft, Edit } from "@mui/icons-material";
 
-import "./profile.css";
+import "./Profile.css";
 import guides from "../guides.json";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
+    const navigate = useNavigate();
     const id = window.location.pathname.replace("/profile/", "");
     const user = guides.filter((guide) => guide.id === parseInt(id))[0];
     const icon =
@@ -34,6 +36,7 @@ export const Profile = () => {
                                 variant="invert"
                                 sx={{ color: "#a75aa3" }}
                                 startIcon={<Edit />}
+                                onClick={() => navigate(`${window.location.pathname}/edit`)}
                             >
                                 Edit
                             </Button>

@@ -4,7 +4,7 @@ import { Search } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
 import guides from "../guides.json";
-import "./guides.css";
+import "./Guides.css";
 
 export const Guides = () => {
     const navigate = useNavigate();
