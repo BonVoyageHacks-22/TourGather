@@ -79,8 +79,12 @@ function LocationIndex(props) {
     <>
       <h1>Browse Locations</h1>
       <p> Click on a location to see more information </p>
-      <Link>
-        <Button variant="contained" endIcon={<AddLocationAltIcon />}>
+      <Link to={`/location/new`}>
+        <Button
+          sx={{ backgroundColor: "#A75AA3", color: "white", textDecoration: "none" }}
+          variant="contained"
+          endIcon={<AddLocationAltIcon />}
+        >
           Add Location
         </Button>
       </Link>
