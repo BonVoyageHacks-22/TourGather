@@ -2,3 +2,5 @@
     height: 50px;
     width: 50px; 
 }
+
+.appbar { background: '#4EB398'; position: 'fixed'; z-index: 11; }

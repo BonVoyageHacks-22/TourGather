@@ -18,7 +18,7 @@ function BrowseLocationCard(props) {
         onClick={() => goToPage(props.doc.id)}
       >
         <img src={props.doc.data().images[0]} alt="..." />
-        <h3> {props.doc.data().name} </h3>
+        <h3 className="card-title"> {props.doc.data().name} </h3>
         <p className="description">
           Description: {props.doc.data().description}{" "}
         </p>

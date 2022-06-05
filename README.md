@@ -14,6 +14,7 @@
 * [Form Image Preview](https://www.tutsmake.com/react-js-multiple-image-upload-with-preview-example/)
 * [Image Gallery](https://openbase.com/js/react-image-gallery)
 * [React Router](https://reactrouter.com/)
+* [Happy travel photo created by jcomp - www.freepik.com](https://www.freepik.com/photos/happy-travel)
 
 <hr/>
 # Getting Started with Create React App

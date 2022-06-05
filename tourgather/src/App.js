@@ -51,24 +51,16 @@ function App() {
 function Home() {
   return (
     <>
-      <main>
-        <h2>Home</h2>
-        <p>You can do this, I believe in you.</p>
-      </main>
-      <nav>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-          <Link to="/">Home</Link>
-          </li>
-          <li>
-          <Link to="/guides">Guides</Link>
-          </li>
-          <li>
-              <Link to="/signup">Sign Up</Link>
-          </li>
-      </nav>
+    <main>
+    <div className="home-container">
+      <h1 className="home-header">Welcome to TourGather!</h1>
+      <p className="home-text">
+        Take a break from your busy life and plan your perfect daycation with us! <br/>
+        View all our locations, or even add your own!
+        You can also look through the list of guides to find the perfect one for you. 
+      </p>        
+    </div>
+    </main>
     </>
   );
 }
