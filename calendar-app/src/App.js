@@ -55,8 +55,16 @@ function App() {
       <h1 style={{ fontSize: "50px", marginTop: "10px", marginBottom: "10px", color: "darkblue" }}>Calendar</h1>
             <h2 style={{ fontSize: "25px", marginTop: "10px", marginBottom: "10px", color: "darkblue" }}>Add New Tour</h2>
             <div>
-                <input type="text" placeholder="Add Tour Guide Name" style={{ height: "20px", width: "20%", marginRight: "10px", marginLeft: "10px" }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}></input>
-                <button onClick={(e) => setNewEvent({ ...newEvent, title: "" })}>Clear</button>
+                <input 
+                  type="text" 
+                  placeholder="Add Tour Guide Name" 
+                  style={{ height: "20px", width: "20%", marginRight: "10px", marginLeft: "10px", textAlign: "center" }} 
+                  value={newEvent.title} 
+                  onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}>
+                </input>
+                <button 
+                  style={{ alignItems: "center", marginBlockStart: "10px", marginBlockEnd: "10px", marginInlineEnd: "10px"}}
+                  onClick={(e) => setNewEvent({ ...newEvent, title: "" })}>Clear</button>
 
                 <br></br>
 
@@ -64,8 +72,10 @@ function App() {
                   placeholderText="Start Date" 
                   showTimeSelect
                   popperPlacement="bottom"
-                  style={{ height: "20px", width: "20%", marginRight: "10px", marginLeft: "10px" }} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })}></DatePicker>
-                <button onClick={(start) => setNewEvent({ ...newEvent, start: "" })}>Clear</button>
+                  style={{ marginLeft: "10px", height: "20px", width: "20px" }} 
+                  selected={newEvent.start} 
+                  onChange={(start) => setNewEvent({ ...newEvent, start })}>
+                </DatePicker>
 
                 <br></br>
 
@@ -73,8 +83,10 @@ function App() {
                   placeholderText="End Date" 
                   showTimeSelect
                   popperPlacement="bottom"
-                  style={{ height: "20px", width: "20%", marginRight: "10px", marginLeft: "10px" }} selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })}></DatePicker>
-                <button onClick={(end) => setNewEvent({ ...newEvent, end: "" })}>Clear</button>
+                  style={{ height: "20px", width: "20px" }} 
+                  selected={newEvent.end} 
+                  onChange={(end) => setNewEvent({ ...newEvent, end })}>
+                </DatePicker>
                 
                 <br></br>
 
