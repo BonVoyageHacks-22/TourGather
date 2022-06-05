@@ -21,6 +21,11 @@
     display: block;
 }
 
+#editBtn {
+    float: right;
+    color: "#4eb398";
+}
+
 #backBtn {
     float: left;
     margin-left: 10px;

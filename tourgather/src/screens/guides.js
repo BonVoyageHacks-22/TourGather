@@ -2,13 +2,32 @@ import { Rating, InputAdornment, TextField } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
-import guides from '../guides.json';
+import guides from "../guides.json";
 import "./guides.css";
+import { useState } from "react";
 
 export const Guides = () => {
     const navigate = useNavigate();
+    const [tourGuides, setTourGuides] = useState(guides);
     const icon =
         "https://icons-for-free.com/download-icon-human+person+user+icon-1320196276306824343_512.png";
+    let searchResults = [];
+
+    function search(e) {
+        let input = e.target.value;
+
+        if (input === "") {
+            setTourGuides(guides);
+        } else {
+            setTourGuides(
+                guides.filter((guide) =>
+                    Object.keys(guide).some((key) =>
+                        guide[key].toString().includes(input)
+                    )
+                )
+            );
+        }
+    }
 
     return (
         <>
@@ -23,11 +42,15 @@ export const Guides = () => {
                     ),
                 }}
                 style={{ marginBottom: "20px", width: "500px" }}
+                onInput={search}
             />
             <br />
-            {guides.map((guide) => (
+            {tourGuides.map((guide) => (
                 <div key={guide.id}>
-                    <div id="container" onClick={() => navigate(`../profile/${guide.id}`)}>
+                    <div
+                        id="container"
+                        onClick={() => navigate(`../profile/${guide.id}`)}
+                    >
                         <img
                             id="profilePic"
                             alt="Profile"
