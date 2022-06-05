@@ -19,8 +19,15 @@ import {
   limit,
   startAfter,
 } from "firebase/firestore";
+import { Button } from "@mui/material";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+import BrowseLocationCard from "./BrowseLocationCard";
+
+import "./LocationIndex.css";
+
+import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
 
 const db = getFirestore(firebaseApp);
 
@@ -59,10 +66,9 @@ function LocationIndex(props) {
     );
 
     setLocationData({
-        documentSnapshots: documentSnapshots,
-        next: next,
+      documentSnapshots: documentSnapshots,
+      next: next,
     });
-
   };
 
   useEffect(() => {
@@ -71,26 +77,23 @@ function LocationIndex(props) {
 
   return (
     <>
-      <p>This the index page content for the locations</p>
+      <h1>Browse Locations</h1>
+      <p> Click on a location to see more information </p>
+      <Link to={`/location/new`}>
+        <Button
+          sx={{ backgroundColor: "#A75AA3", color: "white", textDecoration: "none" }}
+          variant="contained"
+          endIcon={<AddLocationAltIcon />}
+        >
+          Add Location
+        </Button>
+      </Link>
 
-      <hr />
-      
-      <div className="form-group multi-preview">
-          {(locationData.documentSnapshots.docs || []).map((doc) => {
-            return (
-              <div key={doc.id}>
-                              <img src={doc.data().images[0]} alt="..." />
-            <p>Location: {doc.data().name} </p>
-            <p>Description: {doc.data().description} </p>
-            <p>Coordinates: {doc.data().coordinates._lat.toString()}, {doc.data().coordinates._long.toString()} </p>
-    
-                <Link to={`/location/${doc.id}`}>
-                  <p>{doc.data().name}</p>
-                </Link>
-              </div>
-            );
-          })}
-        </div>
+      <div className="locations-browsing-area">
+        {(locationData.documentSnapshots.docs || []).map((doc) => {
+          return <BrowseLocationCard doc={doc} />;
+        })}
+      </div>
     </>
   );
 }
