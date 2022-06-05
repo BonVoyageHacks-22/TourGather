@@ -27,7 +27,7 @@ import {
   arrayUnion,
   arrayRemove,
 } from "firebase/firestore";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 import "./NewLocationForm.css";
 
@@ -78,6 +78,10 @@ function NewLocationForm(props) {
     }));
   }
 
+  function delay(time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+  }
+
   async function uploadFiles(e) {
     // create the new location doc
     if (files.name === "") {
@@ -106,6 +110,24 @@ function NewLocationForm(props) {
 
       return;
     }
+
+    // if (isNaN(files.coordinates._lat)) {
+    //   setAlertInfo({
+    //     open: true,
+    //     message: "Please enter a valid latitude for the location",
+    //   });
+
+    //   return;
+    // }
+
+    // if (isNaN(files.coordinates._long)) {
+    //     setAlertInfo({
+    //       open: true,
+    //       message: "Please enter a valid longitude for the location",
+    //     });
+  
+    //     return;
+    //   }
 
     if (files.coordinates._long === "") {
       setAlertInfo({
@@ -149,48 +171,61 @@ function NewLocationForm(props) {
     for (let i = 0; i < files.fileObj.length; i++) {
       // Get the ref
       var filePath =
-        "tourGather/locations/" +
+        "TourGather/Locations/" +
         docRef.id.toString() +
         "/" +
         files.fileObj[i].name;
       console.log(filePath);
       const storageRef = ref(storage, filePath.toString());
 
-      const uploadTask = uploadBytes(storageRef, files.fileObj[i]).then(
-        (snapshot) => {
-          console.log("Upload is complete");
-          console.log(snapshot);
+      const uploadTask = uploadBytes(storageRef, files.fileObj[i])
+        .then(
+          // eslint-disable-next-line no-loop-func
+          (snapshot) => {
+            console.log("Upload is complete");
+            console.log(snapshot);
 
-          // update the location doc with the image url
-          updateDoc(docRef, {
-            images: arrayUnion(snapshot.ref.fullPath),
+            getDownloadURL(storageRef).then((url) =>
+              // update the location doc with the image url
+              updateDoc(docRef, {
+                images: arrayUnion(url),
+              })
+            );
+          },
+          (error) => {
+            console.log(error);
+          }
+        )
+        .then(() => {
+            // buy time for firebase storage to refresh
+          delay(500).then(() => {
+            if (i === files.fileObj.length - 1) {
+              console.log("done");
+
+              navigate("/location/" + docRef.id);
+            }
           });
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+        });
     }
 
-    nameInput.current.value = "";
-    descriptionInput.current.value = "";
-    coordinatesInputLat.current.value = "";
-    coordinatesInputLong.current.value = "";
-    setFiles({
-      fileArray: [],
-      fileObj: [],
-      name: "",
-      description: "",
-      coordinates: {
-        _lat: "",
-        _long: "",
-      },
-    });
+    // nameInput.current.value = "";
+    // descriptionInput.current.value = "";
+    // coordinatesInputLat.current.value = "";
+    // coordinatesInputLong.current.value = "";
+
+    // setFiles({
+    //   fileArray: [],
+    //   fileObj: [],
+    //   name: "",
+    //   description: "",
+    //   coordinates: {
+    //     _lat: "",
+    //     _long: "",
+    //   },
+    // });
 
     e.preventDefault();
     console.log(files);
-
-    navigate("/locations/" + docRef.id);
   }
 
   return (
@@ -309,6 +344,7 @@ function NewLocationForm(props) {
             borderRadius: 34,
             backgroundColor: "#4EB398",
             padding: "10px 36px",
+            margin: "10px 0px",
             // color: "#131313"
           }}
           variant="contained"

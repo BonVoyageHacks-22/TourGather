@@ -12,9 +12,19 @@ function LocationView(props) {
 
     let { locationId } = useParams();
 
-    const [locationData, setLocationData]=useState([])
+    const [locationData, setLocationData]=useState({
+        name: "",
+        description: "",
+        coordinates: {
+            _lat: "",
+            _long: "",
+        },
+        images: [],
+    })
 
     const fetchBlogs=async()=>{
+        console.log(locationId)
+
         const docRef = doc(db, "TourGatherLOCATIONS", locationId);
         const docSnap = await getDoc(docRef);
 
@@ -26,6 +36,7 @@ function LocationView(props) {
         console.log("No such document!");
         }
     }
+
     useEffect(() => {
         fetchBlogs();
     }, []) 
@@ -34,6 +45,12 @@ function LocationView(props) {
         <>
         <p>This is where we put the location view</p>
         <p>Location id: {locationId}</p>
+
+        <div className="form-group multi-preview">
+          {(locationData.images || []).map((url) => (
+            <img src={url} alt="..." />
+          ))}
+        </div>
 
         <p>Location: {locationData.name} </p>
         <p>Description: {locationData.description} </p>
