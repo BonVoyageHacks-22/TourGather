@@ -34,7 +34,7 @@ export const Profile = () => {
                 if (user.location[0] !== "") {
                     for (let i = 0; i < locationsArray.length; i++) {
                         let id = locationsArray[i].id;
-                        const docRef = doc(db, "TourGatherGUIDES", id);
+                        const docRef = doc(db, "TourGatherLOCATIONS", id);
                         const docSnap = await getDoc(docRef);
 
                         if (docSnap.exists()) {
