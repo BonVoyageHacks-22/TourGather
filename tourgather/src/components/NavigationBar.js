@@ -15,6 +15,10 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import React, { useCallback, useState, useEffect, useMemo } from "react";
 
+import "./NavigationBar.css";
+
+import logo from './tour.png';
+
 const pageLinks = {
   "Home": "/",
   "About": "/about",
@@ -51,7 +55,7 @@ function NavigationBar(props) {
     <AppBar position="static" style={{ background: '#4EB398' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+        {/* <img className="logo" src={logo} alt="logo" sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
           <Typography
             variant="h6"
             noWrap
@@ -67,10 +71,10 @@ function NavigationBar(props) {
               textDecoration: "none",
             }}
           >
-            LOGO
+            TOURGATHER
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }}}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -108,7 +112,7 @@ function NavigationBar(props) {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <img className="logo" src={logo} alt="logo" sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -125,7 +129,7 @@ function NavigationBar(props) {
               textDecoration: "none",
             }}
           >
-            LOGO
+            TOURGATHER
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (

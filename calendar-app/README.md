@@ -1,21 +1,3 @@
-## Installed packages
-* React Router
-    * `npm install react-router-dom@6`
-* Material UI
-    * `npm install @mui/material @emotion/react @emotion/styled`
-    * `npm install @mui/material @mui/styled-engine-sc styled-components`
-    * `npm install @mui/icons-material`
-* Firebase
-    * `npm install firebase`
-
-## References
-* [Authentication](https://www.freecodecamp.org/news/react-firebase-authentication-and-crud-operations/)
-* https://mui.com/material-ui/react-app-bar/ 
-* [Form Image Preview](https://www.tutsmake.com/react-js-multiple-image-upload-with-preview-example/)
-* [Image Gallery](https://openbase.com/js/react-image-gallery)
-* [React Router](https://reactrouter.com/)
-
-<hr/>
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -11,3 +11,26 @@
   height: 500px;
   width: 600px;
 }
+
+.location-view-container {
+  /* width: 600px; */
+  display: flex;
+  justify: center;
+  align-items: center;
+}
+
+.main-view-container {
+  display: flex;
+  justify: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10%, 10%, 10%, 10%;
+  margin: 10%, 10%, 10%, 10%;
+}
+
+.description-text {
+  width: 80%;
+  max-width: 800px;
+}
+
+@import "~react-image-gallery/styles/css/image-gallery.css";

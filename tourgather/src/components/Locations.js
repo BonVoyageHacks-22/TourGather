@@ -5,7 +5,7 @@ function Locations(props) {
 
     return (
         <>
-        <p>This is where we put the location browsing view showing a bunch of locations</p>
+        {/* <p>This is where we put the location browsing view showing a bunch of locations</p> */}
         <Outlet />
         </>
     );

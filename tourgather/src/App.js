@@ -6,6 +6,7 @@ import NewLocationForm from './components/NewLocationForm';
 import Locations from './components/Locations';
 import EditLocation from './components/EditLocation';
 import LocationIndex from './components/LocationIndex';
+import LocationNotFound from './components/LocationNotFound';
 import NavigationBar from './components/NavigationBar';
 import Itinery from './components/Itinery';
 
@@ -33,6 +34,7 @@ function App() {
         <Route path="location" element={<Locations />}>
         <Route path=":locationId" element={<LocationView />} />
         <Route path=":locationId/edit" element={<EditLocation />} />
+        <Route path="notFound" element={<LocationNotFound />} />
         <Route path="new" element={<NewLocationForm />} />
         <Route index element={<LocationIndex />} />
         </Route>

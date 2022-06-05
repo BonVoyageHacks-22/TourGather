@@ -1,19 +1,64 @@
-import { Card, Button, Rating } from "@mui/material";
-import { ChevronLeft, Edit } from "@mui/icons-material";
+import { useState, useEffect } from "react";
+import { Card, Button, Rating, Chip } from "@mui/material";
+import { ChevronLeft } from "@mui/icons-material";
+import { getFirestore, getDoc, doc } from "firebase/firestore";
 
 import "./Profile.css";
-import guides from "../guides.json";
-import { useNavigate } from "react-router-dom";
+import firebaseApp from "../firebase";
+
+const db = getFirestore(firebaseApp);
 
 export const Profile = () => {
-    const navigate = useNavigate();
     const id = window.location.pathname.replace("/profile/", "");
-    const user = guides.filter((guide) => guide.id === parseInt(id))[0];
+    const [user, setUser] = useState();
+    const [locations, setLocations] = useState([]);
     const icon =
         "https://icons-for-free.com/download-icon-human+person+user+icon-1320196276306824343_512.png";
 
+    useEffect(() => {
+        async function fetchProfile() {
+            const docRef = doc(db, "TourGatherGUIDES", id);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                setUser(docSnap.data());
+            } else {
+                console.log("No such user!");
+            }
+        }
+
+        async function fetchLocations() {
+            if (user !== undefined) {
+                let locationsArray = [...user.location];
+
+                if (user.location[0] !== "") {
+                    for (let i = 0; i < locationsArray.length; i++) {
+                        let id = locationsArray[i].id;
+                        const docRef = doc(db, "TourGatherLOCATIONS", id);
+                        const docSnap = await getDoc(docRef);
+
+                        if (docSnap.exists()) {
+                            let info = { name: docSnap.data().name, id: id };
+                            setLocations([...locations, info]);
+                        } else {
+                            console.log("No such user!");
+                        }
+                    }
+                }console.log(locationsArray)
+            }
+            
+        }
+
+        fetchProfile();
+        fetchLocations();
+    }, []);
+
+    const handleOnClick = (e) => {
+        console.log(e)
+    }
+
     return (
-        <>
+        <div style={{ marginTop: "10px" }}>
             <Button
                 id="backBtn"
                 startIcon={<ChevronLeft />}
@@ -28,18 +73,9 @@ export const Profile = () => {
                         <img
                             id="profilePic"
                             alt="Profile"
-                            src={user.imgURL === "-" ? icon : user.imgURL}
+                            src={user.imgURL === "" ? icon : user.imgURL}
                         />
                         <div id="userDetails">
-                            <Button
-                                id="editBtn"
-                                variant="invert"
-                                sx={{ color: "#a75aa3" }}
-                                startIcon={<Edit />}
-                                onClick={() => navigate(`${window.location.pathname}/edit`)}
-                            >
-                                Edit
-                            </Button>
                             <p>Name: {user.name}</p>
                             <p>
                                 Rating:
@@ -50,13 +86,25 @@ export const Profile = () => {
                                 />
                             </p>
                             <p>Email: {user.email}</p>
-                            <p>Bio: {user.bio}</p>
+                            <p>Bio: {user.bio === "" ? " -" : user.bio}</p>
+                            <p>
+                                Locations:
+                                {locations.length >= 1
+                                    ? locations.map((location) => (
+                                          <Chip
+                                              id={location.id}
+                                              label={location.name}
+                                              onClick={handleOnClick}
+                                          />
+                                      ))
+                                    : " -"}
+                            </p>
                         </div>
                     </>
                 ) : (
                     <p>No user found</p>
                 )}
             </Card>
-        </>
+        </div>
     );
 };
