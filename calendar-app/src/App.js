@@ -56,6 +56,7 @@ function App() {
             <h2 style={{ fontSize: "25px", marginTop: "10px", marginBottom: "10px", color: "darkblue" }}>Add New Tour</h2>
             <div>
                 <input type="text" placeholder="Add Tour Guide Name" style={{ height: "20px", width: "20%", marginRight: "10px", marginLeft: "10px" }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}></input>
+                <button onClick={(e) => setNewEvent({ ...newEvent, title: "" })}>Clear</button>
                 <DatePicker 
                   placeholderText="Start Date" 
                   showTimeSelect
