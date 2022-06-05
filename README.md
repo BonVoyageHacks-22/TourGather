@@ -8,7 +8,7 @@
 * Firebase
     * `npm install firebase`
 * Big Calendar
-    * `npm install big-calendar`
+    * `npm install react-big-calendar`
 
 ## References
 * [Authentication](https://www.freecodecamp.org/news/react-firebase-authentication-and-crud-operations/)
