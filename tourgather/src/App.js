@@ -14,7 +14,6 @@ import Signup from "./Signup";
 import { Container } from "react-bootstrap";
 import { AuthProvider } from "./AuthContext";
 import Dashboard from "./Dashboard"
-import { BrowserRouter as Switch } from "react-router-dom"
 import Login from "./Login"
 import UpdateProfile from "./UpdateProfile";
 // import PrivateRoute from "./PrivateRoute";
@@ -22,6 +21,7 @@ import UpdateProfile from "./UpdateProfile";
 import './App.css';
 import { Profile } from './components/Profile';
 import { Guides } from './components/Guides';
+import { About } from './components/About';
 
 function App() {
   return (
@@ -64,19 +64,6 @@ function Home() {
       </p>        
     </div>
     </main>
-    </>
-  );
-}
-
-function About() {
-  return (
-    <>
-      <main>
-        <h1 className='about-header'>Who are we?</h1>
-        <p className='about-para'>
-          <Link to="/"> Home </Link>
-        </p>
-      </main>
     </>
   );
 }
