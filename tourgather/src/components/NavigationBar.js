@@ -52,7 +52,7 @@ function NavigationBar(props) {
   };
 
   return (
-    <AppBar position="static" style={{ background: '#4EB398' }}>
+    <AppBar position="static" className="appbar" style={{ background: '#4EB398', position: 'fixed' , }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
         {/* <img className="logo" src={logo} alt="logo" sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}

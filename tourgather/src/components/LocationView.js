@@ -21,6 +21,7 @@ import ImageGallery from "react-image-gallery";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import "./LocationView.css";
+import LocationGuidesTable from "./LocationGuidesTable";
 
 const db = getFirestore(firebaseApp);
 
@@ -57,7 +58,7 @@ function LocationView(props) {
 
       const guidesQuery = await query(
         guidesRef,
-        where("location", "array-contains", locationTag)
+        where("locations", "array-contains", locationTag)
       );
       const querySnapshot = await getDocs(guidesQuery);
 
@@ -130,7 +131,9 @@ function LocationView(props) {
           ))}
         </div> */}
 
-        <p className="description-text">Description: {locationData.description} </p>
+        <p className="description-text">
+          Description: {locationData.description}{" "}
+        </p>
 
         <p>
           Coordinates: {locationData.coordinates._lat.toString()},{" "}
@@ -156,14 +159,18 @@ function LocationView(props) {
           </div>
         </div>
 
+        <br/>
+
         <div className="multi-preview">
-          {(locationData.guides || []).map((guide) => (
+          <LocationGuidesTable guides={locationData.guides || []} />
+
+          {/* {(locationData.guides || []).map((guide) => (
             <p>
               <Link to={`/guide/${guide.id}`}>
                 {guide.name} - {guide.rating}
               </Link>
             </p>
-          ))}
+          ))} */}
         </div>
       </div>
     </>
