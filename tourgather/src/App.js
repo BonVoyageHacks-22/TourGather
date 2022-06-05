@@ -8,6 +8,7 @@ import EditLocation from './components/EditLocation';
 import LocationIndex from './components/LocationIndex';
 import LocationNotFound from './components/LocationNotFound';
 import NavigationBar from './components/NavigationBar';
+import Itinery from './components/Itinery';
 
 import Signup from "./Signup";
 import { Container } from "react-bootstrap";
@@ -43,6 +44,7 @@ function App() {
         <Route path="update-profile" element={<UpdateProfile/>} />
         <Route path="profile/:id" element={<Profile />} />
         <Route path="guides" element={<Guides/>} />
+        <Route path="calendar" element={<Itinery/>} />
       </Routes>
     </div>
   );
@@ -51,6 +53,7 @@ function App() {
 function Home() {
   return (
     <>
+
     <main>
     <div className="home-container">
       <h1 className="home-header">Welcome to TourGather!</h1>
@@ -133,7 +136,6 @@ function Loginin() {
         </>
     );
 }
-
 
 export default App;
 
