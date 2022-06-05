@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <NavigationBar />
-      <h1 className='app-header'>App main component</h1>
+      {/* <h1 className='app-header'>App main component</h1> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
