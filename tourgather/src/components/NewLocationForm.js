@@ -231,6 +231,7 @@ function NewLocationForm(props) {
 
   return (
     <>
+    <div className="new-location-form-container">
       <p>Add the information about your new location here!</p>
 
       <FormControl>
@@ -379,6 +380,7 @@ function NewLocationForm(props) {
           Submit
         </Button>
       </FormControl>
+      </div>
     </>
   );
 }
