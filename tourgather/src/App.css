@@ -1,5 +1,9 @@
-/* .App {
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
+.App {
   text-align: center;
+  font-family: 'Concert One', cursive;
+  font-size: 20px;
 }
 
 .App-logo {
@@ -94,6 +98,7 @@ main {
   background-size: cover;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
-
-
+#paper {
+  padding: 3% 20%;
+  margin: 2% 10%;
+}
