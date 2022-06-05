@@ -7,6 +7,7 @@ import Locations from './components/Locations';
 import EditLocation from './components/EditLocation';
 import LocationIndex from './components/LocationIndex';
 import NavigationBar from './components/NavigationBar';
+import Itinery from './components/Itinery';
 
 import Signup from "./Signup";
 import { Container } from "react-bootstrap";
@@ -41,6 +42,7 @@ function App() {
         <Route path="update-profile" element={<UpdateProfile/>} />
         <Route path="profile/:id" element={<Profile />} />
         <Route path="guides" element={<Guides/>} />
+        <Route path="calendar" element={<Itinery/>} />
       </Routes>
     </div>
   );
@@ -65,6 +67,9 @@ function Home() {
           </li>
           <li>
               <Link to="/signup">Sign Up</Link>
+          </li>
+          <li>
+              <Link to="/calendar">Itinery</Link>
           </li>
       </nav>
     </>
@@ -139,7 +144,6 @@ function Loginin() {
         </>
     );
 }
-
 
 export default App;
 
