@@ -120,6 +120,7 @@ function LocationView(props) {
           <ImageGallery
             showFullscreenButton={false}
             items={locationData.galleryImages}
+            showNav={false}
           />
         </div>
 
