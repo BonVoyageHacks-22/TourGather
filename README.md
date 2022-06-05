@@ -7,6 +7,8 @@
     * `npm install @mui/icons-material`
 * Firebase
     * `npm install firebase`
+* Big Calendar
+    * `npm install big-calendar`
 
 ## References
 * [Authentication](https://www.freecodecamp.org/news/react-firebase-authentication-and-crud-operations/)
