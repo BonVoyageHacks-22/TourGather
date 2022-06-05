@@ -7,6 +7,8 @@ import { AuthProvider } from "./AuthContext";
 import Dashboard from "./Dashboard"
 import { BrowserRouter as Switch } from "react-router-dom"
 import Login from "./Login"
+import UpdateProfile from "./UpdateProfile";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
         <Route path="signup" element={<Signingup />} />
         <Route path="login" element={<Loginin/>} />
         <Route path="dashboard" element={<Dashboard/>} />
+        <Route path="update-profile" element={<UpdateProfile/>} />
       </Routes>
     </div>
   );

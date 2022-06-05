@@ -1,16 +1,19 @@
 import React, {useRef, useState} from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
 import { useAuth } from "./AuthContext";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { getAuth, updateProfile, sendEmailVerification } from "firebase/auth";
+const auth = getAuth();
 
 export default function Signup() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
+    const nameRef = useRef()
     const { signup } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
-
+    const navigate = useNavigate()
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -23,6 +26,11 @@ export default function Signup() {
             setError('')
             setLoading(true)
             await signup(emailRef.current.value, passwordRef.current.value)
+            await updateProfile(auth.currentUser, {
+                displayName: nameRef.current.value
+            })
+            navigate('/dashboard')
+
         } catch {
             setError('Failed to create an account')
         }
@@ -37,6 +45,10 @@ export default function Signup() {
                     <h2 className="text-center mb-4">Sign up</h2>
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Form onSubmit={ handleSubmit }>
+                        <Form.Group id="displayName">
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control type="displayName" ref={nameRef} required />
+                        </Form.Group>
                         <Form.Group id="email">
                             <Form.Label>Email</Form.Label>
                             <Form.Control type="email" ref={emailRef} required />
@@ -46,7 +58,7 @@ export default function Signup() {
                             <Form.Control type="password" ref={passwordRef} required />
                         </Form.Group>
                         <Form.Group id="password-confirm">
-                            <Form.Label>Pasword Confirmation</Form.Label>
+                            <Form.Label>Password Confirmation</Form.Label>
                             <Form.Control type="password" ref={passwordConfirmRef} required />
                         </Form.Group>
                         <Button disabled={loading} className="w-100" type="submit">Sign Up</Button>
