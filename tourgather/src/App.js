@@ -1,20 +1,34 @@
 import './App.css';
 import { Routes, Route, Link } from "react-router-dom";
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
-import './App.css';
+
+import LocationView from './components/LocationView';
+import NewLocationForm from './components/NewLocationForm';
+import Locations from './components/Locations';
+import EditLocation from './components/EditLocation';
+import LocationIndex from './components/LocationIndex';
+import NavigationBar from './components/NavigationBar';
+
+
 
 function App() {
   return (
     <div className="App">
-      <h1 className='app-header'>App main component</h1>
+      <NavigationBar />
+      {/* <h1 className='app-header'>App main component</h1> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
+        <Route path="location" element={<Locations />}>
+          <Route path=":locationId" element={<LocationView />} />
+          <Route path=":locationId/edit" element={<EditLocation />} />
+          <Route path="new" element={<NewLocationForm />} />
+          <Route index element={<LocationIndex />} />
+        </Route>
       </Routes>
     </div>
   );
 }
-
 
 function Home() {
   return (
@@ -23,14 +37,6 @@ function Home() {
         <h2>Home</h2>
         <p>You can do this, I believe in you.</p>
       </main>
-      <nav>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-          <Link to="/">Home</Link>
-          </li>
-      </nav>
     </>
   );
 }
