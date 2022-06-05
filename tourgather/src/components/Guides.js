@@ -40,7 +40,7 @@ export const Guides = () => {
                         </InputAdornment>
                     ),
                 }}
-                style={{ marginBottom: "20px", width: "500px" }}
+                style={{ marginTop: "10px", marginBottom: "20px", width: "500px" }}
                 onInput={search}
             />
             <br />
