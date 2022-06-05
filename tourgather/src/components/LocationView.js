@@ -52,7 +52,7 @@ function LocationView(props) {
 
       const guidesRef = collection(db, "TourGatherGUIDES");
 
-      const locationTag = "/TourGatherGUIDES/" + locationId;
+      const locationTag = "/TourGatherLOCATIONS/" + locationId;
       console.log(locationTag);
 
       const guidesQuery = await query(
