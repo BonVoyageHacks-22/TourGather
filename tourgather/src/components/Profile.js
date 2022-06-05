@@ -13,7 +13,7 @@ export const Profile = () => {
         "https://icons-for-free.com/download-icon-human+person+user+icon-1320196276306824343_512.png";
 
     return (
-        <>
+        <div style={{marginTop: "10px"}}>
             <Button
                 id="backBtn"
                 startIcon={<ChevronLeft />}
@@ -57,6 +57,6 @@ export const Profile = () => {
                     <p>No user found</p>
                 )}
             </Card>
-        </>
+        </div>
     );
 };
