@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Rating, InputAdornment, TextField, Card } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore, collection, getDocs, query, where } from "firebase/firestore";
 
 import "./Guides.css";
 import firebaseApp from "../firebase";
@@ -17,35 +17,36 @@ export const Guides = () => {
     let results = [];
 
     useEffect(() => {
-        async function fetchTourGuides() {
-            const response = await getDocs(collection(db, "TourGatherGUIDES"));
-            response.forEach((item) => {
-                let tourGuide = { ...item.data(), id: item.id };
-                if (!results.includes(item.id))
-                    results.push(tourGuide)
-            });
-
-            setTourGuides(results);
-        }
-
         fetchTourGuides();
-    }, []);
+    });
 
-    /*     function search(e) {
+    async function fetchTourGuides() {
+        const response = await getDocs(collection(db, "TourGatherGUIDES"));
+        response.forEach((item) => {
+            let tourGuide = { ...item.data(), id: item.id };
+            if (!results.includes(item.id)) results.push(tourGuide);
+        });
+
+        setTourGuides(results);
+    }
+
+    async function search(e) {
         let input = e.target.value;
+        console.log(input)
 
         if (input === "") {
-            setTourGuides(guides);
+            fetchTourGuides();
         } else {
-            setTourGuides(
-                guides.filter((guide) =>
-                    Object.keys(guide).some((key) =>
-                        guide[key].toString().includes(input)
-                    )
-                )
-            );
+            setTourGuides([]);
+            const q = query(collection(db, "TourGatherGUIDES"), where("name", "==", input), where("name", "<=", input));
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((item) => {
+                let tourGuide = { ...item.data(), id: item.id };
+                if (!results.includes(item.id)) results.push(tourGuide);
+            });
+            setTourGuides(results)
         }
-    } */
+    }
 
     return (
         <>
@@ -79,7 +80,9 @@ export const Guides = () => {
                                   id="profilePic"
                                   alt="Profile"
                                   src={
-                                      guide.imgURL === "" ? icon : guide.imgURL.toString()
+                                      guide.imgURL === ""
+                                          ? icon
+                                          : guide.imgURL.toString()
                                   }
                               />
                               <div id="userDetails">
@@ -92,7 +95,7 @@ export const Guides = () => {
                                           precision={0.1}
                                       />
                                   </p>
-                                  <p>Bio: {guide.bio}</p>
+                                  <p>Bio: {guide.bio === "" ? " -" : guide.bio}</p>
                               </div>
                           </Card>
                           <br />
