@@ -57,17 +57,27 @@ function App() {
             <div>
                 <input type="text" placeholder="Add Tour Guide Name" style={{ height: "20px", width: "20%", marginRight: "10px", marginLeft: "10px" }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}></input>
                 <button onClick={(e) => setNewEvent({ ...newEvent, title: "" })}>Clear</button>
+
+                <br></br>
+
                 <DatePicker 
                   placeholderText="Start Date" 
                   showTimeSelect
                   popperPlacement="bottom"
                   style={{ height: "20px", width: "20%", marginRight: "10px", marginLeft: "10px" }} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })}></DatePicker>
+                <button onClick={(start) => setNewEvent({ ...newEvent, start: "" })}>Clear</button>
+
+                <br></br>
+
                 <DatePicker 
                   placeholderText="End Date" 
                   showTimeSelect
                   popperPlacement="bottom"
                   style={{ height: "20px", width: "20%", marginRight: "10px", marginLeft: "10px" }} selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })}></DatePicker>
+                <button onClick={(end) => setNewEvent({ ...newEvent, end: "" })}>Clear</button>
                 
+                <br></br>
+
                 <button onClick={addEvent} style={{ left: "20px", top: "20%", marginTop: "10px" }}>Add Tour</button>
             </div>
 
