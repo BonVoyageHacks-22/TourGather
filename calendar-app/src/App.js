@@ -26,13 +26,13 @@ const localizer = dateFnsLocalizer({
 const events = [
   {
       title: "Mike Gowsling",
-      start: new Date(2022, 5, 1),
-      end: new Date(2022, 5, 1),
+      start: new Date(2022, 5, 21),
+      end: new Date(2022, 5, 21),
   },
   {
       title: "Betty Tan",
-      start: new Date(2022, 5, 7),
-      end: new Date(2022, 5, 7),
+      start: new Date(2022, 5, 7, 14, 20),
+      end: new Date(2022, 5, 7, 15, 20),
   },
   {
       title: "Peter Lim",
@@ -42,6 +42,7 @@ const events = [
 ];
 
 function App() {
+  // Array
   const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
   const [allEvents, setAllEvents] = useState(events);
 
@@ -55,12 +56,15 @@ function App() {
             <h2 style={{ fontSize: "25px", marginTop: "10px", marginBottom: "10px", color: "darkblue" }}>Add New Tour</h2>
             <div>
                 <input type="text" placeholder="Add Tour Guide Name" style={{ height: "20px", width: "20%", marginRight: "10px", marginLeft: "10px" }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}></input>
-
                 <DatePicker 
                   placeholderText="Start Date" 
+                  showTimeSelect
+                  popperPlacement="bottom"
                   style={{ height: "20px", width: "20%", marginRight: "10px", marginLeft: "10px" }} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })}></DatePicker>
                 <DatePicker 
                   placeholderText="End Date" 
+                  showTimeSelect
+                  popperPlacement="bottom"
                   style={{ height: "20px", width: "20%", marginRight: "10px", marginLeft: "10px" }} selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })}></DatePicker>
                 
                 <button onClick={addEvent} style={{ left: "20px", top: "20%", marginTop: "10px" }}>Add Tour</button>
@@ -71,6 +75,7 @@ function App() {
               events={allEvents} 
               startAccessor="start" 
               endAccessor="end" 
+              views={['month', 'week', 'day', 'agenda']}
               style={{ alignContent: "center", height: 500, width: "97%", marginBlockStart: "30px", marginBlockEnd: "30px", marginInlineStart: "30px", marginInlineEnd: "30px", color: "darkblue", backgroundColor: "white"}} />
     </div>
   );
