@@ -84,7 +84,7 @@ function LocationIndex(props) {
             <p>Description: {doc.data().description} </p>
             <p>Coordinates: {doc.data().coordinates._lat.toString()}, {doc.data().coordinates._long.toString()} </p>
     
-                <Link to={`/locations/${doc.id}`}>
+                <Link to={`/location/${doc.id}`}>
                   <p>{doc.data().name}</p>
                 </Link>
               </div>
