@@ -10,6 +10,8 @@
 
 ## References
 * [Authentication](https://www.freecodecamp.org/news/react-firebase-authentication-and-crud-operations/)
+* https://mui.com/material-ui/react-app-bar/ 
+* [Form Image Preview](https://www.tutsmake.com/react-js-multiple-image-upload-with-preview-example/)
 
 <hr/>
 # Getting Started with Create React App
