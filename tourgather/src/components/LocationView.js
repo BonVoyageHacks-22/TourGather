@@ -1,4 +1,4 @@
-import { Routes, Route, Link, useParams } from "react-router-dom";
+import { Routes, Route, Link, useParams, useNavigate } from "react-router-dom";
 import React, { useCallback, useState, useEffect, useMemo } from "react";
 import firebaseApp from "../firebase";
 import { getFirestore } from "firebase/firestore";
@@ -12,6 +12,8 @@ import {
   updateDoc,
   arrayUnion,
   arrayRemove,
+  query,
+  where,
 } from "firebase/firestore";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -21,6 +23,8 @@ import "./LocationView.css";
 const db = getFirestore(firebaseApp);
 
 function LocationView(props) {
+  const navigate = useNavigate();
+
   let { locationId } = useParams();
 
   const [locationData, setLocationData] = useState({
@@ -31,6 +35,7 @@ function LocationView(props) {
       _long: "",
     },
     images: [],
+    guides: [],
   });
 
   const fetchLocation = async () => {
@@ -41,10 +46,47 @@ function LocationView(props) {
 
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data());
-      setLocationData(docSnap.data());
+
+      const guidesRef = collection(db, "TourGatherGUIDES");
+
+
+      const locationTag = "/TourGatherGUIDES/" + locationId
+      console.log(locationTag)
+
+      const guidesQuery = await query(
+        guidesRef,
+        where("location", "array-contains", locationTag)
+      );
+      const querySnapshot = await getDocs(guidesQuery);
+
+      var guides = [];
+
+      
+
+      querySnapshot.forEach((doc) => {
+        console.log(doc.data());
+
+        var guide = {
+          id: doc.id,
+          ...doc.data(),
+        };
+
+        console.log(doc.id, " => ", doc.data());
+        guides.push(guide);
+      });
+
+      setLocationData({
+        name: docSnap.data().name,
+        description: docSnap.data().description,
+        coordinates: docSnap.data().coordinates,
+        images: docSnap.data().images,
+        guides: guides,
+      });
+      
     } else {
       // doc.data() will be undefined in this case
       console.log("No such document!");
+      navigate("/location/" + docRef.id);
     }
   };
 
@@ -52,7 +94,7 @@ function LocationView(props) {
     fetchLocation();
   }, []);
 
- var srcString =
+  var srcString =
     "https://maps.google.com/maps?q=" +
     locationData.coordinates._lat +
     ",%20" +
@@ -61,8 +103,8 @@ function LocationView(props) {
 
   return (
     <>
-      <p>This is where we put the location view</p>
-      <p>Location id: {locationId}</p>
+      {/* <p>This is where we put the location view</p>
+      <p>Location id: {locationId}</p> */}
 
       <div class="mapouter">
         <div class="gmap_canvas">
@@ -83,7 +125,7 @@ function LocationView(props) {
         </div>
       </div>
 
-      <div className="form-group multi-preview">
+      <div className="multi-preview">
         {(locationData.images || []).map((url) => (
           <img src={url} alt="..." />
         ))}
@@ -95,6 +137,16 @@ function LocationView(props) {
         Coordinates: {locationData.coordinates._lat.toString()},{" "}
         {locationData.coordinates._long.toString()}{" "}
       </p>
+
+      <div className="multi-preview">
+        {(locationData.guides || []).map((guide) => (
+          <p>
+            <Link to={`/guide/${guide.id}`}>
+              {guide.name} - {guide.rating}
+            </Link>
+          </p>
+        ))}
+      </div>
     </>
   );
 }
