@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Elsa",
+        "bio": "-",
+        "imgURL": "https://i.guim.co.uk/img/media/b3fbfdfb102521a062541f2c8c74ff3b02fd02a3/0_192_3500_2101/500.jpg?quality=85&auto=format&fit=max&s=f2cdbbc647073a0ccad0cce7f468fb4b",
+        "rating": 4.6,
+        "email": "elsa@frozen.com"
+    },
+    {
+        "id": 2,
+        "name": "Anna",
+        "bio": "-",
+        "imgURL": "-",
+        "rating": 4.5,
+        "email": "anna@frozen.com"
+    },
+    {
+        "id": 3,
+        "name": "Sven",
+        "bio": "-",
+        "imgURL": "-",
+        "rating": 3,
+        "email": "sven@frozen.com"
+    }
+]
