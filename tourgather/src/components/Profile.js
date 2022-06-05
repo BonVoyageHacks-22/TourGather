@@ -29,6 +29,14 @@ export const Profile = () => {
                             src={user.imgURL === "-" ? icon : user.imgURL}
                         />
                         <div id="userDetails">
+                            <Button
+                                id="editBtn"
+                                variant="invert"
+                                sx={{ color: "#a75aa3" }}
+                                startIcon={<Edit />}
+                            >
+                                Edit
+                            </Button>
                             <p>Name: {user.name}</p>
                             <p>
                                 Rating:
