@@ -23,10 +23,11 @@ const pageLinks = {
   "Home": "/",
   "About": "/about",
   "Browse Locations": "/location",
-  "Tour Guides": "/guides"
+  "Tour Guides": "/guides",
+  "Itinerary": "/calendar"
 };
 
-const pages = ["Home", "About", "Browse Locations", "Tour Guides"];
+const pages = ["Home", "About", "Browse Locations", "Tour Guides", "Itinerary"];
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
